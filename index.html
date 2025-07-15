@@ -85,6 +85,33 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
+
+        /* Mobile menu styles */
+        .mobile-menu-button {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-button {
+                display: block;
+            }
+        }
+
+        /* Video responsive wrapper */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 
@@ -94,15 +121,28 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center">
-                    <img src="logo.png" alt="株式会社SIソーラー ロゴ" class="h-6 w-auto">
+                    <img src="logo.png" alt="株式会社SIソーラー ロゴ" class="h-6 w-auto max-w-[120px]">
                 </div>
-                <div class="flex items-center space-x-6">
+                <!-- Desktop menu -->
+                <div class="hidden md:flex items-center space-x-6">
                     <a href="tel:03-5642-3733"
                         class="flex items-center bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300">
                         <i class="fas fa-phone mr-2"></i>
-                        03-5642-3733
+                        <span class="hidden sm:inline">03-5642-3733</span>
                     </a>
                 </div>
+                <!-- Mobile menu button -->
+                <button class="mobile-menu-button md:hidden p-2" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-2xl text-gray-700"></i>
+                </button>
+            </div>
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="tel:03-5642-3733"
+                    class="block bg-blue-600 text-white px-4 py-3 rounded-lg text-center hover:bg-blue-700 transition duration-300">
+                    <i class="fas fa-phone mr-2"></i>
+                    03-5642-3733
+                </a>
             </div>
         </div>
     </header>
@@ -111,17 +151,17 @@
     <section class="hero-bg min-h-screen flex items-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="fade-in">
-                <h2 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                     新築住宅を映像で記録する<br>
                     <span
                         class="gradient-text bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-green-400">新たな価値</span>
                 </h2>
-                <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-4xl mx-auto">
+                <p class="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 max-w-4xl mx-auto">
                     太陽光設置後の完成した住宅を1分間のドローン映像にしてお施主様へプレゼント
                 </p>
                 <div class="slide-up">
                     <a href="#service"
-                        class="inline-block bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-blue-700 hover:to-green-700 transition duration-300 transform hover:scale-105">
+                        class="inline-block bg-gradient-to-r from-blue-600 to-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:from-blue-700 hover:to-green-700 transition duration-300 transform hover:scale-105">
                         サービス詳細を見る
                     </a>
                 </div>
@@ -130,50 +170,52 @@
     </section>
 
     <!-- Main Video Section -->
-    <section class="py-20 bg-white">
+    <section class="py-12 md:py-20 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h3 class="text-4xl font-bold text-gray-900 mb-4">サービス紹介動画</h3>
-                <p class="text-xl text-gray-600">SIソーラーのドローン撮影サービスをご紹介</p>
+            <div class="text-center mb-8 md:mb-12">
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">サービス紹介動画</h3>
+                <p class="text-lg sm:text-xl text-gray-600">SIソーラーのドローン撮影サービスをご紹介</p>
             </div>
             <div class="video-container max-w-4xl mx-auto">
-                <iframe src="https://drive.google.com/file/d/1ROf8XMtAokh5EolWBtvXIcJCFVK9PRQG/preview" width="900"
-                    height="480" allow="autoplay"></iframe>
+                <div class="video-wrapper">
+                    <iframe src="https://drive.google.com/file/d/1ROf8XMtAokh5EolWBtvXIcJCFVK9PRQG/preview"
+                        allow="autoplay"></iframe>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Service Section -->
-    <section id="service" class="py-20 section-bg">
+    <section id="service" class="py-12 md:py-20 section-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h3 class="text-4xl font-bold text-gray-900 mb-4">サービス概要</h3>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            <div class="text-center mb-10 md:mb-16">
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">サービス概要</h3>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                     こだわりの注文住宅を手掛けられている工務店様に、お施主様への特別なプレゼントとして
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
-                <div class="bg-white rounded-2xl p-8 shadow-xl hover-scale">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 mb-10 md:mb-16">
+                <div class="bg-white rounded-2xl p-6 md:p-8 shadow-xl hover-scale">
                     <div class="text-center mb-6">
                         <i class="fas fa-video text-5xl text-blue-600 mb-4"></i>
-                        <h4 class="text-2xl font-bold text-gray-900">1分間の動画撮影</h4>
+                        <h4 class="text-xl sm:text-2xl font-bold text-gray-900">1分間の動画撮影</h4>
                     </div>
                     <p class="text-gray-600 text-center">太陽光設置後の完成した一番綺麗な状態の住宅を、プロフェッショナルなドローン技術で美しく撮影いたします。</p>
                 </div>
 
-                <div class="bg-white rounded-2xl p-8 shadow-xl hover-scale">
+                <div class="bg-white rounded-2xl p-6 md:p-8 shadow-xl hover-scale">
                     <div class="text-center mb-6">
                         <i class="fas fa-certificate text-5xl text-green-600 mb-4"></i>
-                        <h4 class="text-2xl font-bold text-gray-900">国家資格取得社員</h4>
+                        <h4 class="text-xl sm:text-2xl font-bold text-gray-900">国家資格取得社員</h4>
                     </div>
                     <p class="text-gray-600 text-center">撮影するスタッフは全員SIソーラーの社員で、全員が国家資格を取得している安心・信頼の技術者です。</p>
                 </div>
 
-                <div class="bg-white rounded-2xl p-8 shadow-xl hover-scale">
+                <div class="bg-white rounded-2xl p-6 md:p-8 shadow-xl hover-scale">
                     <div class="text-center mb-6">
                         <i class="fas fa-cogs text-5xl text-purple-600 mb-4"></i>
-                        <h4 class="text-2xl font-bold text-gray-900">一貫対応</h4>
+                        <h4 class="text-xl sm:text-2xl font-bold text-gray-900">一貫対応</h4>
                     </div>
                     <p class="text-gray-600 text-center">撮影から編集まで、すべてSIソーラーが一貫して対応。お客様には完成した動画をお渡しいたします。</p>
                 </div>
@@ -182,19 +224,19 @@
     </section>
 
     <!-- Equipment Section -->
-    <section class="py-20 bg-white">
+    <section class="py-12 md:py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h3 class="text-4xl font-bold text-gray-900 mb-4">使用機材</h3>
-                <p class="text-xl text-gray-600">プロフェッショナル仕様の最新機材で高品質な撮影を実現</p>
+            <div class="text-center mb-10 md:mb-16">
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">使用機材</h3>
+                <p class="text-lg sm:text-xl text-gray-600">プロフェッショナル仕様の最新機材で高品質な撮影を実現</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 shadow-xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 md:p-8 shadow-xl">
                     <div class="text-center mb-6">
                         <img src="https://d2llikhal5te33.cloudfront.net/wpdronenews/wp-content/uploads/2023/04/230421_dji_01.jpg"
-                            alt="DJI MAVIC3PRO" class="w-full max-w-md mx-auto rounded-lg shadow-lg mb-6">
-                        <h4 class="text-3xl font-bold text-gray-900 mb-4">DJI MAVIC3PRO</h4>
+                            alt="DJI MAVIC3PRO" class="w-full max-w-md mx-auto rounded-lg shadow-lg mb-6 h-auto">
+                        <h4 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">DJI MAVIC3PRO</h4>
                     </div>
                     <ul class="space-y-3 text-gray-700">
                         <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>4/3型CMOSセンサー搭載
@@ -207,11 +249,11 @@
                     </ul>
                 </div>
 
-                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 shadow-xl">
+                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 md:p-8 shadow-xl">
                     <div class="text-center mb-6">
                         <img src="https://www-cdn.djiits.com/cms/uploads/8c6ec9b0dc4e170120dfd4ebf9f0ffd6@374*374.png"
-                            alt="DJI Osmo Pocket3" class="w-full max-w-sm mx-auto rounded-lg shadow-lg mb-6">
-                        <h4 class="text-3xl font-bold text-gray-900 mb-4">DJI Osmo Pocket3</h4>
+                            alt="DJI Osmo Pocket3" class="w-full max-w-sm mx-auto rounded-lg shadow-lg mb-6 h-auto">
+                        <h4 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">DJI Osmo Pocket3</h4>
                     </div>
                     <ul class="space-y-3 text-gray-700">
                         <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>1インチCMOSセンサー</li>
@@ -226,61 +268,65 @@
     </section>
 
     <!-- Sample Videos Section -->
-    <section class="py-20 section-bg">
+    <section class="py-12 md:py-20 section-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h3 class="text-4xl font-bold text-gray-900 mb-4">実際の撮影事例</h3>
-                <p class="text-xl text-gray-600">これまでに撮影させていただいた実際の住宅映像</p>
+            <div class="text-center mb-10 md:mb-16">
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">実際の撮影事例</h3>
+                <p class="text-lg sm:text-xl text-gray-600">これまでに撮影させていただいた実際の住宅映像</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
                 <div class="video-container">
-                    <h4 class="text-2xl font-bold text-white p-4 bg-gradient-to-r from-blue-600 to-blue-800">エムズアソシエイツ様
+                    <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white p-3 md:p-4 bg-gradient-to-r from-blue-600 to-blue-800">エムズアソシエイツ様
                     </h4>
-                    <iframe width="590" height="315" src="https://www.youtube.com/embed/_W1d3x6_3Ag?si=vJWkKz9ckmeeU6dP"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/_W1d3x6_3Ag?si=vJWkKz9ckmeeU6dP"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                 </div>
 
                 <div class="video-container">
-                    <h4 class="text-2xl font-bold text-white p-4 bg-gradient-to-r from-green-600 to-green-800">木愛様</h4>
-                    <iframe src="https://drive.google.com/file/d/1n4CH2e8cSY341-nAEgJeuzy4wtNLQIy9/preview" width="590"
-                        height="315" allow="autoplay"></iframe>
+                    <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white p-3 md:p-4 bg-gradient-to-r from-green-600 to-green-800">木愛様</h4>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1n4CH2e8cSY341-nAEgJeuzy4wtNLQIy9/preview"
+                            allow="autoplay"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Shooting Techniques Section -->
-    <section class="py-20 bg-white">
+    <section class="py-12 md:py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h3 class="text-4xl font-bold text-gray-900 mb-4">撮影技術サンプル</h3>
-                <p class="text-xl text-gray-600">プロフェッショナルなドローン撮影技術をGIFアニメーションでご紹介</p>
+            <div class="text-center mb-10 md:mb-16">
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">撮影技術サンプル</h3>
+                <p class="text-lg sm:text-xl text-gray-600">プロフェッショナルなドローン撮影技術をGIFアニメーションでご紹介</p>
             </div>
 
             <div class="gif-grid">
                 <div class="bg-gray-900 rounded-2xl overflow-hidden shadow-xl hover-scale">
-                    <img src="正面からの引きの撮影（15秒程度）.gif" alt="正面からの引きの撮影" class="w-full h-64 object-cover">
-                    <div class="p-6">
-                        <h4 class="text-xl font-bold text-white mb-2">正面からの引きの撮影</h4>
+                    <img src="正面からの引きの撮影（15秒程度）.gif" alt="正面からの引きの撮影" class="w-full h-48 md:h-64 object-cover">
+                    <div class="p-4 md:p-6">
+                        <h4 class="text-lg sm:text-xl font-bold text-white mb-2">正面からの引きの撮影</h4>
                         <p class="text-gray-300">15秒程度の美しい引きの撮影技術</p>
                     </div>
                 </div>
 
                 <div class="bg-gray-900 rounded-2xl overflow-hidden shadow-xl hover-scale">
-                    <img src="上空からの360°旋回.gif" alt="上空からの360°旋回" class="w-full h-64 object-cover">
-                    <div class="p-6">
-                        <h4 class="text-xl font-bold text-white mb-2">上空からの360°旋回</h4>
+                    <img src="上空からの360°旋回.gif" alt="上空からの360°旋回" class="w-full h-48 md:h-64 object-cover">
+                    <div class="p-4 md:p-6">
+                        <h4 class="text-lg sm:text-xl font-bold text-white mb-2">上空からの360°旋回</h4>
                         <p class="text-gray-300">ダイナミックな全方位撮影技術</p>
                     </div>
                 </div>
 
                 <div class="bg-gray-900 rounded-2xl overflow-hidden shadow-xl hover-scale">
-                    <img src="屋根（パネル）を横から撮影（チルト操作あり）.gif" alt="屋根パネル横からの撮影" class="w-full h-64 object-cover">
-                    <div class="p-6">
-                        <h4 class="text-xl font-bold text-white mb-2">屋根パネル横からの撮影</h4>
+                    <img src="屋根（パネル）を横から撮影（チルト操作あり）.gif" alt="屋根パネル横からの撮影" class="w-full h-48 md:h-64 object-cover">
+                    <div class="p-4 md:p-6">
+                        <h4 class="text-lg sm:text-xl font-bold text-white mb-2">屋根パネル横からの撮影</h4>
                         <p class="text-gray-300">チルト操作を活用した技術撮影</p>
                     </div>
                 </div>
@@ -289,39 +335,39 @@
     </section>
 
     <!-- Target Customers Section -->
-    <section class="py-20 section-bg">
+    <section class="py-12 md:py-20 section-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h3 class="text-4xl font-bold text-gray-900 mb-4">対象のお客様</h3>
-                <p class="text-xl text-gray-600">こだわりの注文住宅を手掛けられている工務店様へ</p>
+            <div class="text-center mb-10 md:mb-16">
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">対象のお客様</h3>
+                <p class="text-lg sm:text-xl text-gray-600">こだわりの注文住宅を手掛けられている工務店様へ</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
                 <div>
                     <img src="https://www.mitsubishi-home.com/wp/wp-content/uploads/2023/01/img_column_031_1.jpg"
-                        alt="美しい注文住宅" class="w-full rounded-2xl shadow-xl">
+                        alt="美しい注文住宅" class="w-full rounded-2xl shadow-xl h-auto">
                 </div>
                 <div class="space-y-6">
-                    <h4 class="text-3xl font-bold text-gray-900">こだわりの注文住宅にふさわしい<br>特別なサービス</h4>
+                    <h4 class="text-2xl sm:text-3xl font-bold text-gray-900">こだわりの注文住宅にふさわしい<br>特別なサービス</h4>
                     <div class="space-y-4">
                         <div class="flex items-start">
                             <i class="fas fa-home text-2xl text-blue-600 mr-4 mt-1"></i>
                             <div>
-                                <h5 class="text-xl font-semibold text-gray-900 mb-2">お施主様への特別なプレゼント</h5>
+                                <h5 class="text-lg sm:text-xl font-semibold text-gray-900 mb-2">お施主様への特別なプレゼント</h5>
                                 <p class="text-gray-600">完成した美しい住宅の姿を永続的に記録として残せます</p>
                             </div>
                         </div>
                         <div class="flex items-start">
                             <i class="fas fa-star text-2xl text-green-600 mr-4 mt-1"></i>
                             <div>
-                                <h5 class="text-xl font-semibold text-gray-900 mb-2">工務店様の差別化</h5>
+                                <h5 class="text-lg sm:text-xl font-semibold text-gray-900 mb-2">工務店様の差別化</h5>
                                 <p class="text-gray-600">他社にはない付加価値サービスで競合優位性を確立</p>
                             </div>
                         </div>
                         <div class="flex items-start">
                             <i class="fas fa-handshake text-2xl text-purple-600 mr-4 mt-1"></i>
                             <div>
-                                <h5 class="text-xl font-semibold text-gray-900 mb-2">信頼関係の構築</h5>
+                                <h5 class="text-lg sm:text-xl font-semibold text-gray-900 mb-2">信頼関係の構築</h5>
                                 <p class="text-gray-600">お施主様との関係性をより深める特別な体験を提供</p>
                             </div>
                         </div>
@@ -332,18 +378,18 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="py-20 hero-bg">
+    <section class="py-12 md:py-20 hero-bg">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h3 class="text-4xl font-bold text-white mb-6">お問い合わせ</h3>
-            <p class="text-xl text-blue-100 mb-8">
+            <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 md:mb-6">お問い合わせ</h3>
+            <p class="text-lg sm:text-xl text-blue-100 mb-6 md:mb-8">
                 サービスの詳細やご質問など、お気軽にお問い合わせください
             </p>
-            <div class="bg-white rounded-2xl p-8 shadow-2xl">
+            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-2xl">
                 <div class="mb-6">
                     <i class="fas fa-phone-alt text-4xl text-blue-600 mb-4"></i>
-                    <h4 class="text-2xl font-bold text-gray-900 mb-2">お電話でのお問い合わせ</h4>
+                    <h4 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">お電話でのお問い合わせ</h4>
                     <a href="tel:03-5642-3733"
-                        class="text-3xl font-bold text-blue-600 hover:text-blue-800 transition duration-300">
+                        class="text-2xl sm:text-3xl font-bold text-blue-600 hover:text-blue-800 transition duration-300">
                         03-5642-3733
                     </a>
                 </div>
@@ -356,7 +402,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="bg-gray-900 text-white py-8 md:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h4 class="text-2xl font-bold mb-4">株式会社SIソーラー</h4>
@@ -376,6 +422,12 @@
 
     <!-- Smooth Scrolling Script -->
     <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
